@@ -10,7 +10,7 @@ const Create = ({}) => {
   const [isPending, setIspending] = useState(false);
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const newUserData = { imgurl, name, email };
   
     fetch("http://localhost:3030/user", {
@@ -18,8 +18,10 @@ const Create = ({}) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newUserData),
     })
+      
       .then(() => {
         console.log("User has been created");
+        alert('Done')
       })
       .catch((error) => {
         console.log("Error creating user:", error);
@@ -35,7 +37,7 @@ const Create = ({}) => {
   return (
     <main>
       <div className="text-white flex items-start justify-center gap-x-10 pt-10">
-        <h1 className="font-[600] text-2xl ">
+        <h1 className="font-[600] md:text-2xl text-sm ">
           You can create more user in here{" "}
         </h1>
         <div>
