@@ -1,13 +1,12 @@
-'use client'
+"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Create from "@/components/Create";
+import Update from "@/components/Update";
 
 const Page = () => {
-
-
   const [user, setUser] = useState([]);
-  const [isLoading , setIsloading] =useState(true)
+  const [isLoading, setIsloading] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -21,30 +20,34 @@ const Page = () => {
           console.log("Error fetching data:", error);
         }
       };
-  
+
       fetchData();
     }, 3000);
   }, []);
 
-    const handleDelete = async (userId) => {
-      try {
-        await axios.delete(`http://localhost:3030/user/${userId}`);
-        setUser(user.filter((item) => item.id !== userId));
-      } catch (error) {
-        console.log('Delete is error ', error);
-      }
-    };
-    
+  const handleDelete = async (userId) => {
+    try {
+      await axios.delete(`http://localhost:3030/user/${userId}`);
+      setUser(user.filter((item) => item.id !== userId));
+    } catch (error) {
+      console.log("Delete is error ", error);
+    }
+  };
+
+  const handleUpdate = async () => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
 
   return (
     <main>
-  
-  <Create/>
-
-   
+      <Create />
 
       <div className="flex flex-col w-full h-full text-white gap-5 items-center justify-center pt-10">
-      { isLoading && <span className="loader mt-[300px]"></span> }
+        {isLoading && <span className="loader mt-[300px]"></span>}
         {user &&
           user.map((item) => (
             <div key={item.id}>
@@ -65,12 +68,13 @@ const Page = () => {
                     </div>
                     <div className="flex gap-3 pl-10 pt-2">
                       <div>
-                        <button className="text-[12px] bg-green-500 hover:bg-green-600 px-1 h-5 rounded-sm">
-                          Update
-                        </button>
+                      <Update />
                       </div>
                       <div>
-                        <button onClick={() => handleDelete(item.id)} className="text-[12px] bg-red-500 hover:bg-red-600 px-2 h-5 rounded-sm">
+                        <button
+                          onClick={() => handleDelete(item.id)}
+                          className="text-[12px] bg-red-500 hover:bg-red-600 px-2 h-5 rounded-sm"
+                        >
                           Delete
                         </button>
                       </div>
