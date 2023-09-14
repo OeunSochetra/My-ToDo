@@ -20,7 +20,7 @@ const Page = () => {
       const res = await axios.get("http://localhost:3030/user");
       const jsonData = res.data;
       setUser(jsonData);
-      setIsloading(false);
+      // setIsloading(false);
     } catch (error) {
       console.log("Error fetching data:", error);
     }
@@ -48,17 +48,17 @@ const Page = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // if (dataUser.id) {
-    //   handleUpdate(dataUser.id, { ...newUserData, id: dataUser.id });
-    //   setModalUpdate(false);
-    //   console.log("data", newUserData);
-    //   fetchData();
-    // } else {
-    if (dataUser.id) {
+
+    if (dataUser.id && dataUser) {
       handleUpdate();
+      setModalUpdate(false);
     } else {
       handleCreate();
+      setModalCreate(false);
     }
+
+    // handleCreate();
+    // setModalCreate(false);
   };
   async function handleCreate() {
     const newUserData = {
@@ -70,7 +70,6 @@ const Page = () => {
     try {
       const res = await axios.post("http://localhost:3030/user", newUserData);
       console.log(res.data);
-      setModalCreate(false);
       fetchData();
     } catch (error) {
       console.log("Your Created is failed", error);
@@ -88,7 +87,6 @@ const Page = () => {
     try {
       await axios.put(`http://localhost:3030/user/${dataUser.id}`, data);
       fetchData();
-      setModalUpdate(false);
     } catch (error) {
       console.log("Update is fail", error);
     }
@@ -99,10 +97,12 @@ const Page = () => {
     setModalCreate(true);
     setDataUser((prev) => ({
       ...prev,
+      id: "",
       imgurl: "",
       username: "",
       email: "",
     }));
+    console.log("data", dataUser);
   };
 
   const openUpdate = (item) => {
@@ -132,10 +132,9 @@ const Page = () => {
       />
 
       <div className="flex flex-col w-full h-full text-white gap-5 items-center justify-center pt-10">
-        {isLoading && <span className="loader mt-[300px]"></span>}
         {user &&
           user.map((item) => (
-            <div key={item}>
+            <div key={item.id}>
               <ul>
                 <li>
                   <div className="flex">

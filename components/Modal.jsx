@@ -11,7 +11,7 @@ const Modal = ({ modal, setModalCreate, handleSubmit, onChange, dataUser }) => {
               <div className="input__container ">
                 <button
                   onClick={() => setModalCreate(false)}
-                  className="font-sm px-2 h-6 rounded-lg text-white bg-red-300 hover:bg-red-400 ml-2"
+                  className="font-sm px-2 h-6 rounded-lg text-white bg-red-400 hover:bg-red-500 ml-2"
                 >
                   Close
                 </button>
