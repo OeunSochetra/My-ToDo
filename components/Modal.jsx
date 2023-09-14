@@ -1,33 +1,25 @@
 "use client";
-import { data } from "autoprefixer";
-import axios from "axios";
 import { useState } from "react";
 
-const Modal = ({
-  modalUpdate,
-  setModalUpdate,
-  onChange,
-  dataUser,
-  handlesubmit,
-}) => {
+const Modal = ({ modal, setModalCreate, handleSubmit, onChange, dataUser }) => {
   return (
     <>
-      {modalUpdate && (
+      {modal && (
         <div className="fixed top-0 left-0 w-full h-full bg-[#00000080] flex items-center justify-center z-[999] ">
           <div className="flex items-center justify-center">
             <div className="">
               <div className="input__container ">
                 <button
-                  onClick={() => setModalUpdate(false)}
+                  onClick={() => setModalCreate(false)}
                   className="font-sm px-2 h-6 rounded-lg text-white bg-red-300 hover:bg-red-400 ml-2"
                 >
-                  Close {dataUser.i}
+                  Close
                 </button>
                 <h1 className="font-[700] text-2xl flex items-center justify-center text-white pt-10 ">
-                  Update New User
+                  Create New User
                 </h1>
                 <form
-                  onSubmit={handlesubmit}
+                  onSubmit={handleSubmit}
                   className="flex flex-col gap-6 pt-[60px] items-center justify-center"
                 >
                   <input
