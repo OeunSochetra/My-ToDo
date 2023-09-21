@@ -1,6 +1,6 @@
 import React from "react";
 
-const Header = ({toggleModalCreate}) => {
+const Header = ({ toggleModalCreate }) => {
   return (
     <div>
       <div className="text-white flex items-start justify-center gap-x-10 pt-10">
@@ -9,7 +9,7 @@ const Header = ({toggleModalCreate}) => {
         </h1>
         <div>
           <button
-            onClick={() =>toggleModalCreate()}
+            onClick={() => toggleModalCreate()}
             className="mt-2 text-sm px-2 h-6 rounded-sm bg-green-500 hover:bg-green-600"
           >
             Create User

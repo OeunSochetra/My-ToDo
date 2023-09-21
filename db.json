@@ -1,44 +1,8 @@
 {
   "user": [
     {
-      "id": "cc28b1f6-ea4f-416a-bba4-aec9dcc31957",
-      "imgurl": "https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      "username": "Lindsay Walton",
-      "email": "lindsay.walton@example.com"
-    },
-    {
-      "id": "c47d6595-c707-4435-81a9-0bf6890ab20f",
+      "id": "9f90e0f5-4cb7-454b-bd2a-6419c322ab46",
       "imgurl": "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      "username": "Floyd Miles",
-      "email": "floyd.miles@example.com"
-    },
-    {
-      "id": "da330abe-13b3-4c26-975e-6702c39a297a",
-      "imgurl": "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      "username": "Leonard Krasner",
-      "email": "leonard.krasner@example.com"
-    },
-    {
-      "id": "d764479d-2a83-4e11-b306-b04975e3348c",
-      "imgurl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      "username": "Tom Cook",
-      "email": "tom.cook@example.com"
-    },
-    {
-      "id": "ecb9ac11-23e7-4c38-b742-d93f96911481",
-      "imgurl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      "username": "Courtney Henry",
-      "email": "courtney.henry@example.com"
-    },
-    {
-      "id": "92fe74e9-de9b-4a6b-86df-433b4ee31875",
-      "imgurl": "https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-      "username": "Whitney Francis",
-      "email": "whitney.francis@example.com"
-    },
-    {
-      "id": "c5e100ad-0909-43ab-a7a7-d51d154c5517",
-      "imgurl": "https://lh3.googleusercontent.com/ogw/AGvuzYasyooPtGfRtiwvC7ZfcOdVNoUoVWCRgeK_Waa8WQ=s64-c-mo",
       "username": "oeunsochetra",
       "email": "oeunsochetra@gmail.com"
     }

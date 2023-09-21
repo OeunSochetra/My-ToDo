@@ -4,23 +4,25 @@ import axios from "axios";
 import Update from "@/components/Update";
 import Header from "@/components/Header";
 import Modal from "@/components/Modal";
+import DeleteUserModal from "@/components/DeleteUserModal";
 import { v4 as uuidv4 } from "uuid";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Page = () => {
   const [user, setUser] = useState([]);
-  const [isLoading, setIsloading] = useState(true);
 
   const initData = { imgurl: "", username: "", email: "" };
   const [dataUser, setDataUser] = useState(initData);
   const [modalCreate, setModalCreate] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const fetchData = async () => {
     try {
       const res = await axios.get("http://localhost:3030/user");
       const jsonData = res.data;
       setUser(jsonData);
-      // setIsloading(false);
     } catch (error) {
       console.log("Error fetching data:", error);
     }
@@ -30,16 +32,26 @@ const Page = () => {
     fetchData();
   }, []);
 
-  const handleDelete = async (userId) => {
+  // fetchData to display on UI
+
+  // function to delet user
+
+  const handleComfirmDelete = async (userId) => {
     try {
       await axios.delete(`http://localhost:3030/user/${userId}`);
       setUser(user.filter((item) => item.id !== userId));
       fetchData();
+      setShowDeleteModal(false);
     } catch (error) {
       console.log("Delete is error ", error);
     }
+    toast.success("Item Delete successfully 😢", {
+      position: toast.POSITION.TOP_LEFT,
+    });
     console.log("userID", userId);
   };
+
+  // function to delet user
 
   const handleChnange = (e) => {
     const { name, value } = e.target;
@@ -49,18 +61,16 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (dataUser.id && dataUser) {
+    if (dataUser.id) {
       handleUpdate();
-      setModalUpdate(false);
     } else {
       handleCreate();
-      setModalCreate(false);
     }
 
-    // handleCreate();
-    // setModalCreate(false);
+    console.log("datauser", dataUser);
   };
-  async function handleCreate() {
+
+  const handleCreate = async () => {
     const newUserData = {
       id: uuidv4(),
       imgurl: dataUser.imgurl,
@@ -71,10 +81,14 @@ const Page = () => {
       const res = await axios.post("http://localhost:3030/user", newUserData);
       console.log(res.data);
       fetchData();
+      setModalCreate(false);
     } catch (error) {
       console.log("Your Created is failed", error);
     }
-  }
+    toast.success("Item Created successfully  🎉", {
+      position: toast.POSITION.TOP_LEFT,
+    });
+  };
 
   const handleUpdate = async () => {
     const data = {
@@ -87,10 +101,14 @@ const Page = () => {
     try {
       await axios.put(`http://localhost:3030/user/${dataUser.id}`, data);
       fetchData();
+      setModalUpdate(false);
     } catch (error) {
-      console.log("Update is fail", error);
+      console.log("Updated is fail", error);
     }
-    console.log(data);
+    toast.success("Item Updated successfully 🎉", {
+      position: toast.POSITION.TOP_LEFT,
+    });
+    // console.log(data);
   };
 
   const toggleModalCreate = () => {
@@ -102,7 +120,6 @@ const Page = () => {
       username: "",
       email: "",
     }));
-    console.log("data", dataUser);
   };
 
   const openUpdate = (item) => {
@@ -111,10 +128,26 @@ const Page = () => {
     setModalUpdate(true);
   };
 
+  const openDelete = (item) => {
+    setShowDeleteModal(true);
+    setDataUser(item);
+    console.log("items", item);
+    toast.warn("The user will be delete forever ⛔️", {
+      position: toast.POSITION.TOP_LEFT,
+    });
+  };
+
   return (
     <main>
+      <ToastContainer />
       <Header toggleModalCreate={toggleModalCreate} />
-
+      <DeleteUserModal
+        showDeleteModal={showDeleteModal}
+        user={dataUser}
+        onCancel={() => setShowDeleteModal(false)}
+        onComfirm={handleComfirmDelete}
+        ToastContainer={ToastContainer}
+      />
       <Modal
         modal={modalCreate}
         setModalCreate={setModalCreate}
@@ -162,7 +195,7 @@ const Page = () => {
                       </div>
                       <div>
                         <button
-                          onClick={() => handleDelete(item.id)}
+                          onClick={() => openDelete(item)}
                           className="text-[12px] bg-red-500 hover:bg-red-600 px-2 h-5 rounded-sm"
                         >
                           Delete

@@ -20,37 +20,38 @@ const Modal = ({ modal, setModalCreate, handleSubmit, onChange, dataUser }) => {
                 </h1>
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col gap-6 pt-[60px] items-center justify-center"
+                  className="flex flex-col gap-9 pt-[60px] items-center justify-center"
                 >
-                  <input
-                    type="text"
-                    className="input__data"
-                    placeholder="ImageUrl"
-                    required
-                    name="imgurl"
-                    value={dataUser.imgurl}
-                    onChange={onChange}
-                  />
-
-                  <input
-                    type="text"
-                    className="input__data"
-                    placeholder="Username"
-                    required
-                    name="username"
-                    value={dataUser.username}
-                    onChange={onChange}
-                  />
-                  <input
-                    type="text"
-                    className="input__data"
-                    placeholder="Email"
-                    required
-                    name="email"
-                    value={dataUser.email}
-                    onChange={onChange}
-                  />
-
+                  <div className="relative">
+                    <input
+                      type="text"
+                      className="input__data"
+                      placeholder="ImageUrl"
+                      name="imgurl"
+                      value={dataUser.imgurl}
+                      onChange={onChange}
+                    />
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      className="input__data"
+                      placeholder="Username"
+                      name="username"
+                      value={dataUser.username}
+                      onChange={onChange}
+                    />
+                  </div>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      className="input__data"
+                      placeholder="Email"
+                      name="email"
+                      value={dataUser.email}
+                      onChange={onChange}
+                    />
+                  </div>
                   <div className="flex items-center justify-center">
                     <button
                       type="submit"
