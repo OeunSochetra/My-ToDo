@@ -1,15 +1,29 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-const Modal = ({ modal, handleSubmit, setModalCreate, onChange, dataUser }) => {
+const Modal = ({ modal, onSubmit, setModalCreate, dataUser }) => {
   const {
     register,
+    handleSubmit,
+    setValue,
+    reset,
     formState: { errors },
-  } = useForm({ defaultValues: { ImageUrl: "", Username: "", Email: "" } });
+  } = useForm({ defaultValues: { imgurl: "", username: "", email: "" } });
 
-  // const handleValidation = (data) => {
-  //   onSubmit(data);
-  // };
+  const handleValidation = (data) => {
+    onSubmit(data);
+    if (!dataUser) {
+      reset();
+    }
+  };
 
+  useEffect(() => {
+    if (dataUser) {
+      setValue("imgurl", dataUser.imgurl);
+      setValue("username", dataUser.username);
+      setValue("email", dataUser.email);
+    }
+  }, [dataUser]);
   return (
     <>
       {modal && (
@@ -24,56 +38,46 @@ const Modal = ({ modal, handleSubmit, setModalCreate, onChange, dataUser }) => {
                   Close
                 </button>
                 <h1 className="font-[700] text-2xl flex items-center justify-center text-white pt-10 ">
-                  Create New User
+                  {dataUser ? "Update New User" : "Create New User"}
                 </h1>
                 <form
-                  onSubmit={handleSubmit}
+                  onSubmit={handleSubmit(handleValidation)}
                   className="flex flex-col gap-9 pt-[60px] items-center justify-center"
                 >
                   <div className="relative">
                     <input
-                      {...register("ImageUrl", {
+                      {...register("imgurl", {
                         required: "Please the link of imageUrl",
                       })}
                       type="text"
-                      required
                       className="input__data"
                       placeholder="ImageUrl"
-                      name="imgurl"
-                      value={dataUser.imgurl}
-                      onChange={onChange}
                     />
-                    <p>{errors.ImageUrl?.message}</p>
+                    {errors.imgurl && (
+                      <p className="absolute">{errors.imgurl?.message}</p>
+                    )}
                   </div>
                   <div className="relative">
                     <input
-                      {...register("Username", {
+                      {...register("username", {
                         required: "Please input username",
                       })}
                       type="text"
-                      required
                       className="input__data"
                       placeholder="Username"
-                      name="username"
-                      value={dataUser.username}
-                      onChange={onChange}
                     />
-                    <p>{errors.Username?.message}</p>
+                    {errors.username && <p>{errors.username?.message}</p>}
                   </div>
                   <div className="relative">
                     <input
-                      {...register("Email", {
+                      {...register("email", {
                         required: "Please input the email",
                       })}
                       type="text"
-                      required
                       className="input__data"
                       placeholder="Email"
-                      name="email"
-                      value={dataUser.email}
-                      onChange={onChange}
                     />
-                    <p>{errors.Email?.message}</p>
+                    {errors.email && <p>{errors.email?.message}</p>}
                   </div>
                   <div className="flex items-center justify-center">
                     <button

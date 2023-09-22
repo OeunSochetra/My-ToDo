@@ -8,6 +8,7 @@ import DeleteUserModal from "@/components/DeleteUserModal";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SearchQuery from "@/components/SearchQuery";
 
 const Page = () => {
   const [user, setUser] = useState([]);
@@ -58,19 +59,18 @@ const Page = () => {
     setDataUser({ ...dataUser, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = (data) => {
+    // e.preventDefault();
+    // handleCreate(data);
 
     if (dataUser.id) {
-      handleUpdate();
+      handleUpdate(data);
     } else {
-      handleCreate();
+      handleCreate(data);
     }
-
-    console.log("datauser", dataUser);
   };
 
-  const handleCreate = async () => {
+  const handleCreate = async (dataUser) => {
     const newUserData = {
       id: uuidv4(),
       imgurl: dataUser.imgurl,
@@ -82,33 +82,34 @@ const Page = () => {
       console.log(res.data);
       fetchData();
       setModalCreate(false);
+      toast.success("Item Created successfully  🎉", {
+        position: toast.POSITION.TOP_LEFT,
+      });
     } catch (error) {
       console.log("Your Created is failed", error);
     }
-    toast.success("Item Created successfully  🎉", {
-      position: toast.POSITION.TOP_LEFT,
-    });
   };
 
-  const handleUpdate = async () => {
-    const data = {
+  const handleUpdate = async (data) => {
+    const payload = {
       id: dataUser.id,
-      imgurl: dataUser.imgurl,
-      username: dataUser.username,
-      email: dataUser.email,
+      imgurl: data.imgurl,
+      username: data.username,
+      email: data.email,
     };
 
     try {
-      await axios.put(`http://localhost:3030/user/${dataUser.id}`, data);
+      await axios.put(`http://localhost:3030/user/${dataUser.id}`, payload);
       fetchData();
       setModalUpdate(false);
+      toast.success("Item Updated successfully 🎉", {
+        position: toast.POSITION.TOP_LEFT,
+      });
     } catch (error) {
       console.log("Updated is fail", error);
     }
-    toast.success("Item Updated successfully 🎉", {
-      position: toast.POSITION.TOP_LEFT,
-    });
-    // console.log(data);
+
+    console.log("ghg", payload);
   };
 
   const toggleModalCreate = () => {
@@ -144,6 +145,7 @@ const Page = () => {
   return (
     <main>
       <ToastContainer />
+      <SearchQuery />
       <Header toggleModalCreate={toggleModalCreate} />
       <DeleteUserModal
         showDeleteModal={showDeleteModal}
@@ -155,20 +157,22 @@ const Page = () => {
       <Modal
         modal={modalCreate}
         setModalCreate={setModalCreate}
-        onChange={handleChnange}
-        dataUser={dataUser}
-        handleSubmit={handleSubmit}
-        // onSubmit={handleValidation}
+        onSubmit={handleSubmit}
       />
-      <Update
+      <Modal
+        modal={modalUpdate}
+        setModalCreate={setModalUpdate}
+        dataUser={dataUser}
+        onSubmit={handleSubmit}
+      />
+      {/* <Update
         onChange={handleChnange}
         setDataUser={setDataUser}
         dataUser={dataUser}
         modalUpdate={modalUpdate}
         setModalUpdate={setModalUpdate}
-        handlesubmit={handleSubmit}
-      />
-
+        onSubmit={handleSubmit}
+      /> */}
       <div className="flex flex-col w-full h-full text-white gap-5 items-center justify-center pt-10">
         {user &&
           user.map((item) => (

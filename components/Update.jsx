@@ -1,15 +1,35 @@
 "use client";
 import { data } from "autoprefixer";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
 const Modal = ({
   modalUpdate,
   setModalUpdate,
   onChange,
   dataUser,
-  handlesubmit,
+  onSubmit,
 }) => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({ defaultValues: { imgurl: "", username: "", email: "" } });
+
+  const handleValidation = (data) => {
+    onSubmit(data);
+  };
+
+  useEffect(() => {
+    if (dataUser) {
+      setValue("imgurl", dataUser.imgurl);
+      setValue("username", dataUser.username);
+      setValue("email", dataUser.email);
+    }
+  }, [dataUser]);
+
   return (
     <>
       {modalUpdate && (
@@ -27,38 +47,43 @@ const Modal = ({
                   Update New User
                 </h1>
                 <form
-                  onSubmit={handlesubmit}
+                  onSubmit={handleSubmit(handleValidation)}
                   className="flex flex-col gap-6 pt-[60px] items-center justify-center"
                 >
-                  <input
-                    type="text"
-                    className="input__data"
-                    placeholder="ImageUrl"
-                    required
-                    name="imgurl"
-                    value={dataUser.imgurl}
-                    onChange={onChange}
-                  />
+                  <div className="relative">
+                    <input
+                      {...register("imgurl", {
+                        required: "Please the link of imageUrl",
+                      })}
+                      type="text"
+                      className="input__data"
+                      placeholder="ImageUrl"
+                    />
+                    {errors.imgurl && <p>{errors.imgurl?.message}</p>}
+                  </div>
 
-                  <input
-                    type="text"
-                    className="input__data"
-                    placeholder="Username"
-                    required
-                    name="username"
-                    value={dataUser.username}
-                    onChange={onChange}
-                  />
-                  <input
-                    type="text"
-                    className="input__data"
-                    placeholder="Email"
-                    required
-                    name="email"
-                    value={dataUser.email}
-                    onChange={onChange}
-                  />
-
+                  <div className="relative">
+                    <input
+                      {...register("username", {
+                        required: "Please input username",
+                      })}
+                      type="text"
+                      className="input__data"
+                      placeholder="Username"
+                    />
+                    {errors.username && <p>{errors.username?.message}</p>}
+                  </div>
+                  <div className="relative">
+                    <input
+                      {...register("email", {
+                        required: "Please input the email",
+                      })}
+                      type="text"
+                      className="input__data"
+                      placeholder="Email"
+                    />
+                    {errors.email && <p>{errors.email?.message}</p>}
+                  </div>
                   <div className="flex items-center justify-center">
                     <button
                       type="submit"

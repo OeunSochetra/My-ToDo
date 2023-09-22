@@ -5,7 +5,7 @@ const Header = ({ toggleModalCreate }) => {
     <div>
       <div className="text-white flex items-start justify-center gap-x-10 pt-10">
         <h1 className="font-[600] md:text-2xl text-sm ">
-          You can create more user in here{" "}
+          You can create more user in here
         </h1>
         <div>
           <button
