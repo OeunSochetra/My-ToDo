@@ -1,7 +1,15 @@
-"use client";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-const Modal = ({ modal, setModalCreate, handleSubmit, onChange, dataUser }) => {
+const Modal = ({ modal, handleSubmit, setModalCreate, onChange, dataUser }) => {
+  const {
+    register,
+    formState: { errors },
+  } = useForm({ defaultValues: { ImageUrl: "", Username: "", Email: "" } });
+
+  // const handleValidation = (data) => {
+  //   onSubmit(data);
+  // };
+
   return (
     <>
       {modal && (
@@ -24,33 +32,48 @@ const Modal = ({ modal, setModalCreate, handleSubmit, onChange, dataUser }) => {
                 >
                   <div className="relative">
                     <input
+                      {...register("ImageUrl", {
+                        required: "Please the link of imageUrl",
+                      })}
                       type="text"
+                      required
                       className="input__data"
                       placeholder="ImageUrl"
                       name="imgurl"
                       value={dataUser.imgurl}
                       onChange={onChange}
                     />
+                    <p>{errors.ImageUrl?.message}</p>
                   </div>
                   <div className="relative">
                     <input
+                      {...register("Username", {
+                        required: "Please input username",
+                      })}
                       type="text"
+                      required
                       className="input__data"
                       placeholder="Username"
                       name="username"
                       value={dataUser.username}
                       onChange={onChange}
                     />
+                    <p>{errors.Username?.message}</p>
                   </div>
                   <div className="relative">
                     <input
+                      {...register("Email", {
+                        required: "Please input the email",
+                      })}
                       type="text"
+                      required
                       className="input__data"
                       placeholder="Email"
                       name="email"
                       value={dataUser.email}
                       onChange={onChange}
                     />
+                    <p>{errors.Email?.message}</p>
                   </div>
                   <div className="flex items-center justify-center">
                     <button

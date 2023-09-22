@@ -137,6 +137,10 @@ const Page = () => {
     });
   };
 
+  // const handleValidation = (data) => {
+  //   console.log(data);
+  // };
+
   return (
     <main>
       <ToastContainer />
@@ -151,9 +155,10 @@ const Page = () => {
       <Modal
         modal={modalCreate}
         setModalCreate={setModalCreate}
-        handleSubmit={handleSubmit}
         onChange={handleChnange}
         dataUser={dataUser}
+        handleSubmit={handleSubmit}
+        // onSubmit={handleValidation}
       />
       <Update
         onChange={handleChnange}
@@ -207,6 +212,9 @@ const Page = () => {
               </ul>
             </div>
           ))}
+        {/* <div className="pt-10">
+          <HookFrom />
+        </div> */}
       </div>
     </main>
   );
