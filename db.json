@@ -30,5 +30,51 @@
       "username": "oeunsochetra",
       "email": "oeunsochetra@gmail.com"
     }
+  ],
+
+  "speakers" : [
+
+    {
+      "id": "",
+      "imgurl":"https://keynote.tailwindui.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fsteven-mchail.4e94472e.jpg&w=640&q=75",
+      "name":"Steven McHail",
+      "job":"Designer at Globex Corporation"
+    },
+
+    {
+      "id": "",
+      "imgurl":"https://keynote.tailwindui.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fjaquelin-isch.880e5248.jpg&w=640&q=75",
+      "name":"Jaquelin Isch",
+      "job":"UX Design at InGen"
+    },
+
+    {
+      "id": "",
+      "imgurl":"https://keynote.tailwindui.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdianne-guilianelli.b4c5891f.jpg&w=640&q=75",
+      "name":"Dianne Guilianelli",
+      "job":"General Manager at Initech"
+    },
+
+    {
+      "id": "",
+      "imgurl":"https://keynote.tailwindui.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fronni-cantadore.0d04b7fe.jpg&w=640&q=75",
+      "name":"Ronni Cantadore",
+      "job":"Design Engineer at Weyland-Yutani"
+    },
+
+    {
+      "id": "",
+      "imgurl":"https://keynote.tailwindui.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ferhart-cockrin.3697fef6.jpg&w=640&q=75",
+      "name":"Erhart Cockrin",
+      "job":"Product Lead at Cyberdyne"
+    },
+
+    {
+      "id": "",
+      "imgurl":"https://keynote.tailwindui.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fparker-johnson.3f6d7276.jpg&w=640&q=75",
+      "name":"Parker Johnson",
+      "job":"UI Designer at MomCorp"
+    }
+
   ]
 }

@@ -71,7 +71,11 @@ const Modal = ({ modal, onSubmit, setModalCreate, dataUser }) => {
                   <div className="relative">
                     <input
                       {...register("email", {
-                        required: "Please input the email",
+                        pattern: {
+                          value:
+                            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                          message: "You email address is invalid",
+                        },
                       })}
                       type="text"
                       className="input__data"

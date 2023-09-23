@@ -216,9 +216,6 @@ const Page = () => {
               </ul>
             </div>
           ))}
-        {/* <div className="pt-10">
-          <HookFrom />
-        </div> */}
       </div>
     </main>
   );
